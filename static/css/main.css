@@ -1,0 +1,31 @@
+div#login, form#register, form#resetPass, form#delete {
+	width: 250px;
+	margin: auto;
+}
+
+div#login input#id_username, div#login input#id_password {
+	width: auto;
+}
+
+div#login a.btn {
+	display: block;
+	margin-bottom: 5px;
+}
+
+div#loginWidget {
+	display: none;
+}
+
+form#register input#id_username {
+	text-transform: lowercase;
+}
+
+ul.errorlist {
+	color: red;
+	list-style-type: none;
+	margin: 0;
+}
+
+ul.errorlist + input {
+	border-color: red;
+}

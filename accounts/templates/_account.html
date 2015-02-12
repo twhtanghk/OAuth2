@@ -1,0 +1,36 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}{% endblock %}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+    <meta name="viewport" content="width=device-width">
+    <link href="{% static "css/main.css" %}" rel="stylesheet" media="screen">
+    <link href="{% static "bootstrap/css/bootstrap.min.css" %}" rel="stylesheet" media="screen">
+    <style type="text/css">
+    	body {
+    padding-top: 60px;
+  }
+  @media (max-width: 980px) {
+    body {
+      padding-top: 0;
+    }
+  }
+    </style>
+    <link href="{% static "bootstrap/css/bootstrap-responsive.min.css" %}" rel="stylesheet" media="screen">
+    <!--[if lt IE 9]>
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/main.css" />
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+{% include "_header.html" %}
+<div class="content container-fluid">
+    {% block content %}Empty page{% endblock %}
+</div> <!-- content -->
+{% include "_footer.html" %}
+</body>
+</html>

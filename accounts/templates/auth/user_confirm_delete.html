@@ -1,0 +1,20 @@
+{% extends "_account.html" %}
+
+{% load url from future %}
+
+{% block title %}User{% endblock %}
+
+{% block domain %}User{% endblock %}
+
+{% block content %}
+<form id="delete" action="." method="post">{% csrf_token %}
+	<fieldset>
+		<legend>Delete</legend>
+		<table>
+			{{ form.as_table }}
+		</table>
+		<input value="DELETE" type="hidden" name="_method" />
+		<button class="btn" type="submit">Delete</button>
+	</fieldset>
+</form>
+{% endblock %}

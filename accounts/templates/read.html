@@ -1,0 +1,13 @@
+{% extends "_account.html" %}
+
+{% load url from future %}
+
+{% block title %}User{% endblock %}
+
+{% block domain %}User{% endblock %}
+
+{% block content %}
+<p>{{ object.username }}</p>
+<p>{{ object.get_full_name }}</p>
+<p>{{ object.email }}</p>
+{% endblock %}
