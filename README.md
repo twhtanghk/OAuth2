@@ -59,7 +59,6 @@ OAUTH2_PROVIDER = {
 manage.py syncdb
 ```
 
-*	create api key for authorization code and implicit grant in authentication server
 *	update environment variables in start.sh
 
 ```
@@ -76,9 +75,9 @@ VIRENV=~/virtualenv/dev/bin/activate	# python virtualenv script
 
 ## Web API
 * GET /org/api/users/me/: 
-**	in: authorization header "Authorization: Bearer TOKEN"
-**	out: json with user details or error for invalid token
+	*	in: authorization header "Authorization: Bearer TOKEN"
+	*	out: json with user details or error for invalid token
 
 * GET /org/api/oauth2/verify/:
-**	in: authorization header "Authorization: Bearer TOKEN"
-**	out: json with valid token details or error for invalid token
+	*	in: authorization header "Authorization: Bearer TOKEN"
+	*	out: json with valid token details or error for invalid token
