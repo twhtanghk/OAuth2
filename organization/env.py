@@ -27,7 +27,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': 'org',  # Or path to database file if using sqlite3.
         'USER': 'orgrw',  # Not used with sqlite3.
-        'PASSWORD': 'pass1234',  # Not used with sqlite3.
+        'PASSWORD': 'password here',  # Not used with sqlite3.
         'HOST': '',  # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',  # Set to empty string for default. Not used with sqlite3.
     }
@@ -94,7 +94,7 @@ REST_FRAMEWORK = {
 EMAIL_BACKEND = 'lib.backend.Notes'     # comment this setting to send mail by default smtp backend
 DEFAULT_FROM_EMAIL = 'user@abc.com'     # default sender email address
 # web service
-EMAIL_HOST = 'http://10.30.24.76:8000/mail/api/mail/' 
+EMAIL_HOST = 'http://localhost:8001/mail/api/mail/' 
 # gmail
 """
 EMAIL_HOST = 'smtp.gmail.com' 
@@ -126,7 +126,7 @@ SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
 OAUTH2_PROVIDER = {
     # this is the list of available scopes
     'SCOPES': {
-        'https://mob.myvnc.com/org/users':  'Read User',
+        'https://mob.myvnc.com/org/users':  'User',
         'https://mob.myvnc.com/file':       'File',
         'https://mob.myvnc.com/xmpp':       'XMPP',
         'https://mob.myvnc.com/todo':       'Todo',
