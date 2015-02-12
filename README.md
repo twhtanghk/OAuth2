@@ -54,11 +54,13 @@ OAUTH2_PROVIDER = {
 ```
 *	create database 'org' on mysql and create database user with appropriate access right
 *	create tables for Web Application schema
-
 ```
 manage.py syncdb
 ```
-
+*	update domain defined in the created site table
+```
+update django_site set domain='domain here' and name='domain here';
+``` 
 *	update environment variables in start.sh
 
 ```
@@ -71,7 +73,8 @@ VIRENV=~/virtualenv/dev/bin/activate	# python virtualenv script
 ## Web URL
 * /org:	user login, registration, forget password
 * /org/users/me/: current login user profile, change password, delete account
-* /org/developers/applications:	application CRUD 
+* /org/developers/applications:	application CRUD
+* /org/oauth2/authorize/: authorization URL
 
 ## Web API
 * GET /org/api/users/me/: 
