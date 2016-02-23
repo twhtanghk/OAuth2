@@ -84,3 +84,8 @@ VIRENV=~/virtualenv/dev/bin/activate	# python virtualenv script
 * GET /org/api/oauth2/verify/:
 	*	in: authorization header "Authorization: Bearer TOKEN"
 	*	out: json with valid token details or error for invalid token
+	
+* POST /org/api/oauth2/token/:
+	*	see script/oauth2.sh
+	*	in: client id and secret, user id and secret, scope and url
+	*	out: token in json e.g. {"access_token": "token", "token_type": "Bearer", "expires_in": 36000, "refresh_token": "refresh_token", "scope": "scope"}
