@@ -1,7 +1,7 @@
 FROM python:2
 
 WORKDIR /usr/src/app
-ADD https://github.com/twhtanghk/server.dns/archive/master.tar.gz /tmp
+ADD https://github.com/twhtanghk/OAuth2/archive/master.tar.gz /tmp
 RUN tar --strip-components=1 -xzf /tmp/master.tar.gz && \
 	pip install -r requirements.txt && \
 	rm /tmp/master.tar.gz
