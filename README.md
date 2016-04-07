@@ -28,23 +28,11 @@ DATABASES = {
 EMAIL_BACKEND = 'lib.backend.Notes'     # comment this setting to send mail by default smtp backend
 DEFAULT_FROM_EMAIL = 'user@abc.com'     # default sender email address
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = ''
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = ''
-SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/userinfo.email']
-SOCIAL_AUTH_TWITTER_KEY = ''
-SOCIAL_AUTH_TWITTER_SECRET = ''
-SOCIAL_AUTH_YAHOO_OAUTH_KEY = ''
-SOCIAL_AUTH_YAHOO_OAUTH_SECRET = ''
-SOCIAL_AUTH_FACEBOOK_KEY = ''
-SOCIAL_AUTH_FACEBOOK_SECRET = ''
-SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
-
 OAUTH2_PROVIDER = {
     # this is the list of available scopes
     'SCOPES': {
         'https://mob.myvnc.com/org/users':  'Read User',
         'https://mob.myvnc.com/file':       'File',
-        'https://mob.myvnc.com/xmpp':       'XMPP',
         'https://mob.myvnc.com/todo':       'Todo',
         'https://mob.myvnc.com/mobile':     'Mobile'
     }
@@ -61,21 +49,21 @@ update django_site set domain='domain here' and name='domain here';
 ``` 
 
 ## Web URL
-* /org:	user login, registration, forget password
+* /:	user login, registration, forget password
 * /users/me/: current login user profile, change password, delete account
 * /oauth2/applications/: application CRUD
 * /oauth2/authorize/: authorization URL
 
 ## Web API
-* GET /org/api/users/me/: 
+* GET /api/users/me/: 
 	*	in: authorization header "Authorization: Bearer TOKEN"
 	*	out: json with user details or error for invalid token
 
-* GET /org/api/oauth2/verify/:
+* GET /api/oauth2/verify/:
 	*	in: authorization header "Authorization: Bearer TOKEN"
 	*	out: json with valid token details or error for invalid token
 	
-* POST /org/api/oauth2/token/:
+* POST /api/oauth2/token/:
 	*	see script/oauth2.sh
 	*	in: client id and secret, user id and secret, scope and url
 	*	out: token in json e.g. {"access_token": "token", "token_type": "Bearer", "expires_in": 36000, "refresh_token": "refresh_token", "scope": "scope"}
