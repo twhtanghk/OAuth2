@@ -7,11 +7,11 @@
 {% block content %}
 <form id="register" action="." method="post">{% csrf_token %}
 	<fieldset>
-			<legend>Registration</legend>
+			<legend>Sign up</legend>
 	<table>
 		{{ form.as_table }}
 	</table>
-	<button class="btn" type="submit">Register</button>
+	<button class="btn" type="submit">Create account</button>
 	</fieldset>
 </form>
 {% endblock %}

@@ -1,22 +1,20 @@
+import os
+
 USE_X_FORWARDED_HOST = True
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTOCOL', 'https')
-ROOTAPP = 'org'     # deployed context path of the web app
 
-def rooturl(url):
-    return '/' + ROOTAPP + url
-
-ROOT_URLCONF = 'urls'
+ROOT_URLCONF = 'organization.urls'
 
 SERVERURL = 'http://localhost:8000'
-LOGIN_REDIRECT_URL = rooturl('/accounts/profile/')
-LOGIN_URL = rooturl('/accounts/login/')
-LOGOUT_URL = rooturl('/accounts/logout/')
+LOGIN_REDIRECT_URL = 'accounts/profile/'
+LOGIN_URL = 'accounts/login/'
+LOGOUT_URL = 'accounts/logout/'
 
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
-STATIC_URL = rooturl('/static/')
+STATIC_URL = os.path.join(SERVERURL, "static/")
 
-DEBUG = True    # set it to False for production environment and deploy static files on production environment accordingly
+DEBUG = False    # set it to False for production environment and deploy static files on production environment accordingly
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
@@ -26,9 +24,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': 'org',  # Or path to database file if using sqlite3.
-        'USER': 'orgrw',  # Not used with sqlite3.
-        'PASSWORD': 'password here',  # Not used with sqlite3.
-        'HOST': '',  # Set to empty string for localhost. Not used with sqlite3.
+        'USER': 'root',  # Not used with sqlite3.
+        'PASSWORD': '',  # Not used with sqlite3.
+        'HOST': '127.0.0.1',  # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',  # Set to empty string for default. Not used with sqlite3.
     }
 }
@@ -43,45 +41,27 @@ LOGGING = {
     'disable_existing_loggers': False,
     'formatters': {
         'verbose': {
-            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+            'format': '%(levelname)s %(name)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
         },
         'simple': {
-            'format': '%(levelname)s %(asctime)s %(message)s'
+            'format': '%(levelname)s %(name)s %(asctime)s %(message)s'
         },
     },
     'handlers': {
-        'console':{
+        'errorlog': {
             'level': 'DEBUG',
-            'class': 'logging.StreamHandler',
+            'class': 'logging.FileHandler',
+            'filename': 'log/error.log',
             'formatter': 'simple'
         },
     },
     'loggers': {
-        'django.request': {
-            'handlers': ['console'],
+        'django': {
+            'handlers': ['errorlog'],
             'level': 'DEBUG',
             'propagate': True,
         },
-        'lib.backend': {
-            'handlers': ['console'],
-            'level': 'ERROR',
-            'propagate': True,
-        },
-        'oauthlib': {
-            'handlers': ['console'],
-            'level': 'DEBUG',
-            'propagate': True,
-        },
-        'oauth2_provider': {
-            'handlers': ['console'],
-            'level': 'DEBUG',
-            'propagate': True,
-        },
-        'requests': {
-            'handlers': ['console'],
-            'level': 'DEBUG',
-            'propagate': True,
-        },
+        
     }
 }
 

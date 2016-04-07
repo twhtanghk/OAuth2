@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.conf.urls import patterns, include, url
 from django.contrib.auth import views as auth_views
 from registration.forms import RegistrationFormUniqueEmail
@@ -43,4 +44,9 @@ urlpatterns = patterns('',
     url(r'^oauth2/verify/$', TokenView.as_view(), name='oauth2_verify'),    # backward compatible, deprecated
     url(r'^oauth2/', include('oauth2_provider.urls', namespace='oauth2_provider')), # backward compatible, deprecated
     url(r'^developers/', include('oauth2_provider.urls', namespace='oauth2_provider')),
+)
+
+urlpatterns += patterns(
+    '',
+    url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
 )

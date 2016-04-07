@@ -8,11 +8,9 @@ OAuth2 Web Application with account/application registration, account verificati
 *   "pip install -r requirements.txt" to install required python library
 *	update settings defined in 'organization/env.py'
 ```
-ROOTAPP = 'org'     # deployed context path of the web app
-
 SERVERURL = 'http://localhost:8000'
 
-DEBUG = True    # set it to False for production environment and deploy static files on production environment accordingly
+DEBUG = False    # set it to False for production environment and deploy static files on production environment accordingly
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
@@ -20,9 +18,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': 'org',  # Or path to database file if using sqlite3.
-        'USER': 'orgrw',  # Not used with sqlite3.
-        'PASSWORD': 'password here',  # Not used with sqlite3.
-        'HOST': '',  # Set to empty string for localhost. Not used with sqlite3.
+        'USER': 'root',  # Not used with sqlite3.
+        'PASSWORD': '',  # Not used with sqlite3.
+        'HOST': '127.0.0.1',  # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',  # Set to empty string for default. Not used with sqlite3.
     }
 }
@@ -61,20 +59,12 @@ manage.py syncdb
 ```
 update django_site set domain='domain here' and name='domain here';
 ``` 
-*	update environment variables in start.sh
-
-```
-PORT=8000								# port to deploy the webapp
-ROOT=~/prod/OAuth2						# web application root directory
-VIRENV=~/virtualenv/dev/bin/activate	# python virtualenv script
-```
-*	run 'start.sh' to start the web application
 
 ## Web URL
 * /org:	user login, registration, forget password
-* /org/users/me/: current login user profile, change password, delete account
-* /org/developers/applications:	application CRUD
-* /org/oauth2/authorize/: authorization URL
+* /users/me/: current login user profile, change password, delete account
+* /oauth2/applications/: application CRUD
+* /oauth2/authorize/: authorization URL
 
 ## Web API
 * GET /org/api/users/me/: 

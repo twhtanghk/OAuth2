@@ -7,9 +7,8 @@ div#login input#id_username, div#login input#id_password {
 	width: auto;
 }
 
-div#login a.btn {
-	display: block;
-	margin-bottom: 5px;
+button.btn {
+	margin-top: 15px;
 }
 
 div#loginWidget {

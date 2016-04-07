@@ -20,16 +20,8 @@
 		</fieldset>
 	</form>
 	<p>
-		<a href='{% url 'auth_password_reset' %}'>I can't access my account.</a>
+		<a href='{% url 'auth_password_reset' %}'>I can't access my account</a>
+		<a style='float: right' href='{% url 'registration_register' %}'>Sign up</a>
 	</p>
-	<div>
-		<a class="btn" href="{% url 'social:begin' "google-oauth2" %}?next={{ next|urlencode }}"><img style="border: none" src="{% static "images/social/google_32.png" %}" alt="Google"> Google</a>
-		<a class="btn" href="{% url 'social:begin' "twitter" %}?next={{ next|urlencode }}"><img style="border: none" src="{% static "images/social/twitter_32.png" %}" alt="Twitter"> Twitter</a>
-		<a class="btn" href="{% url 'social:begin' "facebook" %}?next={{ next|urlencode }}"><img style="border: none" src="{% static "images/social/facebook_32.png" %}" alt="Facebook"> Facebook</a>
-	</div>
-	<hr/>
-	<form id="userRegister" action="{% url 'registration_register' %}" method="get">
-		<button class="btn" type="submit">Register</button>
-	</form>
 </div>
 {% endblock %}
