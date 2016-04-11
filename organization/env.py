@@ -6,13 +6,15 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTOCOL', 'https')
 ROOT_URLCONF = 'organization.urls'
 
 SERVERURL = 'http://localhost:8000'
+FORCE_SCRIPT_NAME = '/org'
+
 LOGIN_REDIRECT_URL = 'accounts/profile/'
 LOGIN_URL = 'accounts/login/'
 LOGOUT_URL = 'accounts/logout/'
 
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
-STATIC_URL = os.path.join(SERVERURL, "static/")
+STATIC_URL = os.path.join(SERVERURL, FORCE_SCRIPT_NAME, "static/")
 
 DEBUG = False    # set it to False for production environment and deploy static files on production environment accordingly
 

@@ -6,4 +6,4 @@ RUN tar --strip-components=1 -xzf /tmp/master.tar.gz && \
 	pip install -r requirements.txt && \
 	rm /tmp/master.tar.gz
 	
-ENTRYPOINT python manage.py runserver 0.0.0.0:8000
+ENTRYPOINT ./manage.py runserver 0.0.0.0:8000
