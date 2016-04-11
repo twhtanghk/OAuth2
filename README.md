@@ -9,6 +9,7 @@ OAuth2 Web Application with account/application registration, account verificati
 *	update settings defined in 'organization/env.py'
 ```
 SERVERURL = 'http://localhost:8000'
+FORCE_SCRIPT_NAME = '/org'
 
 DEBUG = False    # set it to False for production environment and deploy static files on production environment accordingly
 
