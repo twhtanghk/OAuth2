@@ -2,49 +2,14 @@
 OAuth2 Web Application with account/application registration, account verification, [Authorization Code/Implicit/Password Credentials Grant](http://tools.ietf.org/html/rfc6749).
 
 ## Configuration
-*   install the required tools python, pip, virtualenv
-*	git clone https://github.com/twhtanghk/OAuth2.git
-*   cd OAuth2
-*   "pip install -r requirements.txt" to install required python library
-*	update settings defined in 'organization/env.py'
-```
-SERVERURL = 'http://localhost:8000'
-FORCE_SCRIPT_NAME = '/org'
-
-DEBUG = False    # set it to False for production environment and deploy static files on production environment accordingly
-
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'org',  # Or path to database file if using sqlite3.
-        'USER': 'root',  # Not used with sqlite3.
-        'PASSWORD': '',  # Not used with sqlite3.
-        'HOST': '127.0.0.1',  # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',  # Set to empty string for default. Not used with sqlite3.
-    }
-}
-
-EMAIL_BACKEND = 'lib.backend.Notes'     # comment this setting to send mail by default smtp backend
-DEFAULT_FROM_EMAIL = 'user@abc.com'     # default sender email address
-
-OAUTH2_PROVIDER = {
-    # this is the list of available scopes
-    'SCOPES': {
-        'https://mob.myvnc.com/org/users':  'Read User',
-        'https://mob.myvnc.com/file':       'File',
-        'https://mob.myvnc.com/todo':       'Todo',
-        'https://mob.myvnc.com/mobile':     'Mobile'
-    }
-}
-```
-*	create database 'org' on mysql and create database user with appropriate access right
-*	create tables for Web Application schema
+* update environment variables defined in .env
+* docker-compose -f docker-compose.yml up -d
+* create mysql database (e.g. org) and create database user with appropriate access right
+* create tables with pre-defined schema 
 ```
 manage.py syncdb
 ```
-*	update domain defined in the created site table
+* update domain defined in the created site table
 ```
 update django_site set domain='domain here' and name='domain here';
 ``` 
