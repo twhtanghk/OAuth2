@@ -1,0 +1,19 @@
+version: '2'
+services:
+  oauth2:
+    image: twhtanghk/oauth2
+    external_links:
+      - oauth2_mysql
+    networks:
+      - oauth2mysql_default
+    ports:
+      - 8000
+    environment:
+      SERVICE_NAME: oauth2
+    env_file: 
+      - ../.env
+      - ./.env
+
+networks:
+  oauth2mysql_default:
+    external: true
