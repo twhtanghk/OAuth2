@@ -8,9 +8,9 @@ ROOT_URLCONF = 'organization.urls'
 SERVERURL = os.environ['URL']
 FORCE_SCRIPT_NAME = os.environ['PREFIX']
 
-LOGIN_REDIRECT_URL = 'accounts/profile/'
-LOGIN_URL = 'accounts/login/'
-LOGOUT_URL = 'accounts/logout/'
+LOGIN_REDIRECT_URL = FORCE_SCRIPT_NAME + '/accounts/profile/'
+LOGIN_URL = FORCE_SCRIPT_NAME + '/accounts/login/'
+LOGOUT_URL = FORCE_SCRIPT_NAME + '/accounts/logout/'
 
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"

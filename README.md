@@ -11,7 +11,7 @@ manage.py syncdb
 ```
 * update domain defined in the created site table
 ```
-update django_site set domain='domain here' and name='domain here';
+update django_site set domain='domain here', name='domain here';
 ``` 
 
 ## Web URL
