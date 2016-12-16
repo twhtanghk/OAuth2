@@ -3,7 +3,7 @@ div#login, form#register, form#resetPass, form#delete {
 	margin: auto;
 }
 
-div#login input#id_username, div#login input#id_password {
+form#userLogin input, form#register input, form#resetPass input, form#delete input {
 	width: auto;
 }
 
