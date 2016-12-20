@@ -35,9 +35,11 @@ class UserViewSet(viewsets.ModelViewSet):
     delete:  deny to delete user via api, use web interface only
     """
     model = User
+    queryset = User.objects.all()
     renderer_classes = [JSONRenderer]
     serializer_class = UserSerializer
     lookup_field = 'username'
+    lookup_value_regex = '[^/]*'
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     filter_backends = (filters.SearchFilter, filters.OrderingFilter,)
     search_fields = ('username', 'email')
