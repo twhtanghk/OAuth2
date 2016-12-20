@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth.models import User
 
 class UserSerializer(serializers.ModelSerializer):
-    url = serializers.SerializerMethodField('get_url')
+    url = serializers.SerializerMethodField()
     
     class Meta:
         model = User
