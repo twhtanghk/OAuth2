@@ -153,9 +153,9 @@ ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window; you may, of course, us
 REST_FRAMEWORK.update({
     'DEFAULT_AUTHENTICATION_CLASSES': ('oauth2_provider.ext.rest_framework.OAuth2Authentication',),
     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticated',),
-    'PAGINATE_BY': 10,
-    'PAGINATE_BY_PARAM': 'per_page',
-    'MAX_PAGINATE_BY': 100
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 10,
+    'MAX_PAGE_SIZE': 100
 })
 
 SOCIAL_AUTH_FORCE_EMAIL_VALIDATION = True
