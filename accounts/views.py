@@ -20,9 +20,8 @@ from django.template.loader import render_to_string
 from registration.models import RegistrationProfile
 from django.core.mail import EmailMultiAlternatives
 from warnings import warn
-from rest_framework.permissions import IsAuthenticated
 from rest_framework.generics import RetrieveAPIView
-from rest_framework import filters
+from rest_framework import filters, permissions
 
 class UserViewSet(viewsets.ModelViewSet):
     """
@@ -39,7 +38,7 @@ class UserViewSet(viewsets.ModelViewSet):
     renderer_classes = [JSONRenderer]
     serializer_class = UserSerializer
     lookup_field = 'username'
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     filter_backends = (filters.SearchFilter, filters.OrderingFilter,)
     search_fields = ('username', 'email')
     ordering_fields = ('username', 'email')
