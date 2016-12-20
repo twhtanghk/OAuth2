@@ -1,6 +1,7 @@
 from django.conf import settings
-from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 from django.contrib.auth import views as auth_views
+from django.views.static import serve
 from registration.forms import RegistrationFormUniqueEmail
 from rest_framework.routers import SimpleRouter, Route
 from accounts import views
@@ -22,9 +23,9 @@ class UserAPIRouter(SimpleRouter):
         )
         
 router = UserAPIRouter()
-router.register(r'api/users', views.UserViewSet)
+router.register(r'api/users', views.UserViewSet, 'user')
 
-urlpatterns = patterns('',
+urlpatterns = (
     # API
     url(r'^', include(router.urls)),
     url(r'^api/oauth2/verify/$', TokenView.as_view(), name='oauth2_verify'),
@@ -46,7 +47,6 @@ urlpatterns = patterns('',
     url(r'^developers/', include('oauth2_provider.urls', namespace='oauth2_provider')),
 )
 
-urlpatterns += patterns(
-    '',
-    url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
+urlpatterns += (
+    url(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
 )

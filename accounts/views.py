@@ -14,7 +14,7 @@ from accounts import forms
 from django.views.generic.edit import ModelFormMixin
 from registration.backends.default.views import RegistrationView as BaseRegistrationView
 from django.contrib.sites.models import Site
-from django.contrib.sites.models import RequestSite
+from django.contrib.sites.requests import RequestSite
 from registration import signals
 from django.template.loader import render_to_string
 from registration.models import RegistrationProfile

@@ -30,6 +30,9 @@ DATABASES = {
         'PASSWORD': os.environ['DBPASS'],  # Not used with sqlite3.
         'HOST': os.environ['DBHOST'],  # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',  # Set to empty string for default. Not used with sqlite3.
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+        },
     }
 }
 
@@ -63,7 +66,11 @@ LOGGING = {
             'level': 'DEBUG',
             'propagate': True,
         },
-        
+        'organization': {
+            'handlers': ['errorlog'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
     }
 }
 
