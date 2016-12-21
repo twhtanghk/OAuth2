@@ -7,6 +7,8 @@ from django.contrib.auth.tokens import default_token_generator
 from django.utils.http import int_to_base36
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.mail import EmailMultiAlternatives
+from django.utils.http import urlsafe_base64_encode
+from django.utils.encoding import force_bytes
 
 class UserDelete(forms.ModelForm):
     class Meta:
@@ -28,12 +30,14 @@ class PasswordResetForm(BasePasswordResetForm):
              subject_template_name='registration/password_reset_subject.txt',
              email_template_name='registration/password_reset_email.html',
              use_https=False, token_generator=default_token_generator,
-             from_email=None, request=None):
+             from_email=None, request=None, extra_email_context=None,
+             html_email_template_name=None):
         """
         Generates a one-use only link for resetting password and sends to the
         user.
         """
-        for user in self.users_cache:
+        email = self.cleaned_data['email']
+        for user in self.get_users(email):
             if not domain_override:
                 current_site = get_current_site(request)
                 site_name = current_site.name
@@ -44,7 +48,7 @@ class PasswordResetForm(BasePasswordResetForm):
                 'email': user.email,
                 'domain': domain,
                 'site_name': site_name,
-                'uid': int_to_base36(user.pk),
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
                 'user': user,
                 'token': token_generator.make_token(user),
                 'protocol': use_https and 'https' or 'http',
