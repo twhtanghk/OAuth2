@@ -7,7 +7,8 @@ ENV VER=${VER:-master} \
 WORKDIR $APP
 
 RUN git clone -b $VER $REPO $APP && \
-    pip install -r requirements.txt
+    pip install -r requirements.txt && \
+    ./manage.py collectstatic
 
 EXPOSE 8000
 
