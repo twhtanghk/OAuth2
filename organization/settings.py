@@ -1,14 +1,13 @@
 # Django settings for organization project.
 import os
 import sys
+from django.contrib import admin
 
 from os.path import expanduser
 
 from env import *
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
@@ -59,7 +58,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    os.path.join(BASE_DIR, "static"),
+    os.path.join(admin.__path__[0], 'static/'),
 )
 
 # List of finder classes that know how to find static files in
@@ -71,30 +70,31 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = '202)dwy*30o!)@31nvfc_z)$%jr^b-u38x*9*fr&$$xle_ke&#'
+SECRET_KEY = os.environ['SECRET_KEY']
 
-# List of callables that know how to import templates from various sources.
-TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
-)
+PROJECT_DIR = os.path.dirname(os.path.dirname(__file__))
 
-TEMPLATE_CONTEXT_PROCESSORS = (
-    'social.apps.django_app.context_processors.backends',
-    'social.apps.django_app.context_processors.login_redirect',                               
-    "django.contrib.auth.context_processors.auth",
-    "django.core.context_processors.debug",
-    "django.core.context_processors.i18n",
-    "django.core.context_processors.media",
-    "django.core.context_processors.static",
-    "django.core.context_processors.tz",
-    "django.core.context_processors.request",
-    "lib.context_processors.site"
-)
+TEMPLATES = [ {
+    'BACKEND': 'django.template.backends.django.DjangoTemplates',
+    'DIRS': [
+        os.path.join(PROJECT_DIR, 'accounts/templates'),
+        '/usr/local/lib/python2.7/site-packages/django/contrib/admin/templates'
+    ],
+    'OPTIONS': {
+        'context_processors': [
+            'django.contrib.auth.context_processors.auth',
+            'django.template.context_processors.debug',
+            'django.template.context_processors.i18n',
+            'django.template.context_processors.media',
+            'django.template.context_processors.static',
+            'django.template.context_processors.tz',
+            'django.contrib.messages.context_processors.messages',
+        ],
+        'debug': True,
+    },
+} ]
 
-MIDDLEWARE_CLASSES = (
-    'social.apps.django_app.middleware.SocialAuthExceptionMiddleware',
+MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -102,20 +102,11 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     # Uncomment the next line for simple clickjacking protection:
-    # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
-)
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
 
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'organization.wsgi.application'
-
-PROJECT_DIR = os.path.dirname(os.path.dirname(__file__))
-
-TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-    os.path.join(PROJECT_DIR, 'accounts/templates'),
-)
 
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -125,7 +116,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
+    'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'social.apps.django_app.default',
@@ -174,3 +165,4 @@ CORS_URLS_REGEX = r'^.*/api/.*$'
 
 # timeout to cache preflight
 CORS_PREFLIGHT_MAX_AGE = SESSION_COOKIE_AGE
+
