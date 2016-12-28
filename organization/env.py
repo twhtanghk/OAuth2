@@ -59,12 +59,20 @@ LOGGING = {
             'filename': 'log/error.log',
             'formatter': 'simple'
         },
+        'console': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple',
+        },
     },
     'loggers': {
         'django': {
             'handlers': ['errorlog'],
             'level': 'DEBUG',
             'propagate': True,
+        },
+        'django.server': {
+            'handlers': ['console'],
+            'level': 'INFO',
         },
         'organization': {
             'handlers': ['errorlog'],
