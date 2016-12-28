@@ -90,7 +90,10 @@ TEMPLATES = [ {
             'django.template.context_processors.tz',
             'django.contrib.messages.context_processors.messages',
         ],
-        'debug': True,
+        'loaders': (
+            'django.template.loaders.filesystem.Loader',
+            'django.template.loaders.app_directories.Loader',
+        ),
     },
 } ]
 
