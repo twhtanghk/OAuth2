@@ -16,7 +16,7 @@ LOGOUT_URL = FORCE_SCRIPT_NAME + '/accounts/logout/'
 # Example: "http://example.com/static/", "http://static.example.com/"
 STATIC_URL = os.path.join(SERVERURL, FORCE_SCRIPT_NAME, "static/")
 
-DEBUG = True    # set it to False for production environment and deploy static files on production environment accordingly
+DEBUG = False   # set it to False for production environment and deploy static files on production environment accordingly
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
