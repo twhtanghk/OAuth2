@@ -16,7 +16,7 @@ LOGOUT_URL = FORCE_SCRIPT_NAME + '/accounts/logout/'
 # Example: "http://example.com/static/", "http://static.example.com/"
 STATIC_URL = os.path.join(SERVERURL, FORCE_SCRIPT_NAME, "static/")
 
-DEBUG = False    # set it to False for production environment and deploy static files on production environment accordingly
+DEBUG = True    # set it to False for production environment and deploy static files on production environment accordingly
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
@@ -89,17 +89,6 @@ EMAIL_PORT = int(os.environ['EMAILPORT'])
 EMAIL_USE_TLS = os.environ['EMAILTLS'] == 'True'
 EMAIL_HOST_USER = os.environ['EMAILUSER']
 EMAIL_HOST_PASSWORD = os.environ['EMAILPASS']
-
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = ''
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = ''
-SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/userinfo.email']
-SOCIAL_AUTH_TWITTER_KEY = ''
-SOCIAL_AUTH_TWITTER_SECRET = ''
-SOCIAL_AUTH_YAHOO_OAUTH_KEY = ''
-SOCIAL_AUTH_YAHOO_OAUTH_SECRET = ''
-SOCIAL_AUTH_FACEBOOK_KEY = ''
-SOCIAL_AUTH_FACEBOOK_SECRET = ''
-SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
 
 OAUTH2_PROVIDER = {
     # this is the list of available scopes
