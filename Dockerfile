@@ -7,9 +7,8 @@ ENV VER=${VER:-master} \
 WORKDIR $APP
 
 RUN git clone -b $VER $REPO $APP && \
-    pip install -r requirements.txt && \
-    ./manage.py collectstatic
+    pip install -r requirements.txt
 
 EXPOSE 8000
 
-ENTRYPOINT ./manage.py runserver 0.0.0.0:8000
+ENTRYPOINT ./entrypoint.sh
