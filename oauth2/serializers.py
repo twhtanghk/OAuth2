@@ -4,8 +4,8 @@ from accounts.serializers import UserSerializer
 from django.utils import timezone 
 
 class TokenSerializer(serializers.ModelSerializer):
-    client_id = serializers.SerializerMethodField('get_client_id')
-    expires_in = serializers.SerializerMethodField('get_expires_in')
+    client_id = serializers.SerializerMethodField()
+    expires_in = serializers.SerializerMethodField()
     user = UserSerializer()
     
     class Meta:

@@ -21,6 +21,9 @@ class TokenView(RetrieveAPIView):
     authentication_classes = ()
     permission_classes = ()
     
+    def get_object(self):
+        return self.model.objects.get(token=self.kwargs[self.lookup_field])
+
     def retrieve(self, request, *args, **kwargs):
         bearer = request.META.get('HTTP_AUTHORIZATION', '').strip()
         if bearer is None or bearer == '':
