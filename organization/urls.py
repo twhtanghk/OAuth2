@@ -37,8 +37,8 @@ urlpatterns = (
     url(r'^accounts/register/$', views.RegistrationView.as_view(form_class=RegistrationFormUniqueEmail), name='registration_register'),
     url(r'^accounts/', include('registration.backends.hmac.urls')),
     url(r'^oauth2/verify/$', TokenView.as_view(), name='oauth2_verify'),    # backward compatible, deprecated
-    url(r'^oauth2/', include('oauth2_provider.urls', namespace='oauth2_provider')), # backward compatible, deprecated
     url(r'^developers/', include('oauth2_provider.urls', namespace='oauth2_provider')),
+    url(r'^oauth2/', include('oauth2_provider.urls', namespace='oauth2_provider')), # backward compatible, deprecated
 )
 
 urlpatterns += (
