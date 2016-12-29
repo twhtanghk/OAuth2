@@ -9,6 +9,7 @@
             {% endif %}
             <ul class="nav">
             	{% if user.is_authenticated %}
+            	<li><a href="{% url 'oauth2_provider:list' %}">Applications</a></li>
             	<li><a href="{% url 'auth_password_change' %}">Change Password</a></li>
             	<li><a href="{% url 'delete' user.username %}">Delete Account</a></li>
             	<li><a href="{% url 'auth_logout' %}">Logout</a></li>
