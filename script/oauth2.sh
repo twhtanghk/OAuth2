@@ -1,6 +1,6 @@
 #!/bin/sh
 
-url='https://ttsoon.com/org/oauth2/token/'
+url='https://abc.com/auth/oauth2/token/'
 
 client='id:secret'
 
