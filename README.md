@@ -33,3 +33,6 @@ update django_site set domain='domain here', name='domain here';
 	*	see script/oauth2.sh
 	*	in: client id and secret, user id and secret, scope and url
 	*	out: token in json e.g. {"access_token": "token", "token_type": "Bearer", "expires_in": 36000, "refresh_token": "refresh_token", "scope": "scope"}
+	
+## Housekeeping to clear expired tokens
+* python manage.py cleartokens
